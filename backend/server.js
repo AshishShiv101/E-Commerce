@@ -1,18 +1,20 @@
 import express from 'express';
-import dotenv from "dotenv"
-
-import authRoutes from "./routes/auth.route.js"
+import dotenv from "dotenv";
+import authRoutes from "./routes/auth.route.js";
 import { connectDB } from './lib/db.js';
+
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;  // Using the PORT from .env file, default to 5000 if not defined
 
-app.use("/api/auth",authRoutes);
+app.use(express.json());  // Middleware to parse incoming JSON requests
 
-app.listen(5000, () => {
-    console.log('Server is running on http://localhost:'+PORT);
-    connectDB();
-})
+// Mount the authentication routes
+app.use("/api/auth", authRoutes);
 
-
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+    connectDB();  // Connect to the database when the server starts
+});
