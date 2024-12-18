@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
 import { connectDB } from './lib/db.js';
 import cookieParser from 'cookie-parser';
+import productRoutes from "./routes/product.route.js";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());  // Middleware to parse incoming JSON requests
 app.use(cookieParser()); // Middleware to)
 // Mount the authentication routes
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 // Start the server
 app.listen(PORT, () => {
