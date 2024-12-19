@@ -15,7 +15,7 @@ app.use(cookieParser()); // Middleware to)
 // Mount the authentication routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
-
+app.use("/api/cart", cartRoutes);
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
