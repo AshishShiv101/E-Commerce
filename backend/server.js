@@ -4,7 +4,7 @@ import authRoutes from "./routes/auth.route.js";
 import { connectDB } from './lib/db.js';
 import cookieParser from 'cookie-parser';
 import productRoutes from "./routes/product.route.js";
-
+import cartRoutes from "./routes/cart.routes.js "
 dotenv.config();
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(cookieParser()); // Middleware to)
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
-// Start the server
+app.use("/api/coupons",couponRoutes)
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
     connectDB();  // Connect to the database when the server starts
