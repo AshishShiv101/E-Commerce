@@ -1,57 +1,38 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
 
-const userSchema = new mongoose.Schema({
-    name: {
-        type: 'string',
-        required: [true, "Name is required"]
-    },
-    email: {
-        type: 'string',
-        required: [true, "Email is required"],
-        unique: true,
-        lowercase: true,
-        trim: true,
-    },
-    password: {
-        type: 'string', 
-        minlength: [6, "Password must be at least 6 characters"]
-    },
-    cartItems: [{
-        quantity: {
-            type: Number,
-            default: 1
+const couponSchema = new mongoose.Schema(
+    {
+        code: {
+            type: String,
+            required: true,
+            unique: true,
         },
-        product: {
+        discountPercentage: {
+            type: Number,
+            required: true,
+            min: 0,
+            max: 100,
+        },
+        expirationDate: {
+            type: Date,
+            required: true,
+        },
+        isActive: {
+            type: Boolean,
+            default: true,
+        },
+        userId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Product',
-        }
-    }],
-    role: {
-        type: String,
-        enum: ['customer', 'admin'],
-        default: 'customer'
+            ref: "User",
+            required: true,
+            unique: true,
+        },
+    },
+    {
+        timestamps: true,
     }
-}, {
-    timestamps: true,
-});
+);
 
-const User = mongoose.model("User", userSchema)
-userSchema.pre("save", async function (next) {
-    if (this.isModified("password")) return next();
-    try {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
-        next();
-    } catch (error) {
-        next(error);
-    }
+const Coupon = mongoose.model("Coupon", couponSchema);
 
-});
-
-userSchema.methods.comparePassword = async function (password) {
-    return bcrypt.compare(password, this.password);
-}
-
-
-export default User;
+export default Coupon;
