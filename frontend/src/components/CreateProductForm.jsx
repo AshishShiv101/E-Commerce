@@ -8,7 +8,7 @@ const categories = ["jeans", "t-shirts", "shoes", "glasses", "jackets", "suits",
 const CreateProductForm = () => {
     const [newProduct, setNewProduct] = useState({
         name: "",
-        description: "",
+        description: "", 
         price: "",
         category: "",
         image: "",
