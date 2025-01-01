@@ -108,7 +108,7 @@ export const getProductsByCategory = async (req, res) => {
     const {category}= req.prams
     try {
         const products = await Product.find({category})
-        res.json(products)
+        res.json({products})
     } catch (error) {
         console.log("Error in get ProductsByCategory controller",error.message)
         res.status(500).json({ message: "Server error", error: error.message });
