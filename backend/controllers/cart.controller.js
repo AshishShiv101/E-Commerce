@@ -55,7 +55,6 @@ export const removeAllFromCart = async (req, res, next) => {
     }
 }
 
-
 export const updateQuantity = async (req, res, next) => {
     try {
         const {id: productId} = req.params;
