@@ -1,30 +1,30 @@
-import User from "../models/user.models.js"
-import Product from "../models/product.model.js"
+import Order from "../models/order.model.js";
+import Product from "../models/product.model.js";
+import User from "../models/user.models.js";
 
-export const getAnalyticsData = async() => {
+export const getAnalyticsData = async () => {
     const totalUsers = await User.countDocuments();
     const totalProducts = await Product.countDocuments();
 
     const salesData = await Order.aggregate([
         {
-            $group:{
-                _id:null,
-                totalSales:{$sum:1},
-                totalRevenue:{$sum:"$totalAmount"}
+            $group: {
+                _id: null, // it groups all documents together,
+                totalSales: { $sum: 1 },
+                totalRevenue: { $sum: "$totalAmount" },
+            },
+        },
+    ]);
 
-            }
-        }
-    ]) 
+    const { totalSales, totalRevenue } = salesData[0] || { totalSales: 0, totalRevenue: 0 };
 
-    const {totalSales,totalRevenue} = salesData[0] || {totalSales:0,totalRevenue:0}
-
-    return{
-        users:totalUsers,
-        products:totalProducts,
+    return {
+        users: totalUsers,
+        products: totalProducts,
         totalSales,
-        totalRevenue
-    }
-}
+        totalRevenue,
+    };
+};
 
 export const getDailySalesData = async (startDate, endDate) => {
     try {
@@ -47,7 +47,7 @@ export const getDailySalesData = async (startDate, endDate) => {
             { $sort: { _id: 1 } },
         ]);
 
-
+      
 
         const dateArray = getDatesInRange(startDate, endDate);
 
@@ -75,4 +75,4 @@ function getDatesInRange(startDate, endDate) {
     }
 
     return dates;
-}  
+}

@@ -20,7 +20,6 @@ const __dirname = path.resolve();
 
 app.use(express.json({ limit: "10mb" })); 
 app.use(cookieParser());
-
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
