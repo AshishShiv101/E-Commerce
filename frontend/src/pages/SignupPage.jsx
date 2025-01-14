@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { UserPlus, Mail, Lock, User, ArrowRight, Loader } from "lucide-react";
 import { motion } from "framer-motion";
 import { useUserStore } from "../stores/useUserStore";
+import { toast } from "react-hot-toast";
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
@@ -15,8 +16,14 @@ const SignUpPage = () => {
 
   const { signup, loading } = useUserStore();
 
+  const validateFields = (formData) =>{
+    return Object.values(formData).every((value) => value.trim() != "");
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!validateFields(formData)){
+      return toast.error("Please fill out each field");
+    }
     signup(formData);
   };
 
@@ -136,6 +143,7 @@ const SignUpPage = () => {
                 className="block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                 required
               >
+                <option value = "" diabled hidden>Select a Role</option>
                 <option value="customer">Customer</option>
                 <option value="admin">Seller</option> 
               </select>
