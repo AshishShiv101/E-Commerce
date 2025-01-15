@@ -143,9 +143,12 @@ const SignUpPage = () => {
                 className="block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
                 required
               >
-                <option value = "" diabled hidden>Select a Role</option>
-                <option value="customer">Customer</option>
-                <option value="admin">Seller</option> 
+                <select>
+                  <option value="" disabled hidden>Select a Role</option>
+                  <option value="customer">Customer</option>
+                  <option value="seller">Seller</option>
+                </select>
+
               </select>
             </div>
 
