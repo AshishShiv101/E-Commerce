@@ -19,16 +19,13 @@ export const getFeaturedProducts = async (req, res) => {
             return res.json(JSON.parse(featuredProducts));
         }
 
-        // if not in redis, fetch from mongodb
-        // .lean() is gonna return a plain javascript object instead of a mongodb document
-        // which is good for performance
+      
         featuredProducts = await Product.find({ isFeatured: true }).lean();
 
         if (!featuredProducts) {
             return res.status(404).json({ message: "No featured products found" });
         }
 
-        // store in redis for future quick access
 
         await redis.set("featured_products", JSON.stringify(featuredProducts));
 
