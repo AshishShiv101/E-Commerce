@@ -30,9 +30,6 @@ Data Protection: Focused on securing user and transaction data.
 
 Explore the live platform here: E-Commerce Live Site  https://e-commerce-2-j6z5.onrender.com/
 
-Screenshots
-
-Insert images/screenshots here to showcase the platform UI and features
 
 # Tech Stack
 
