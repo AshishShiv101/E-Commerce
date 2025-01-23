@@ -29,7 +29,7 @@ Explore the live platform here: **[E-Commerce Live Site](https://e-commerce-2-j6
 ## 🛠 Tech Stack
 
 ### **Frontend**:
-- HTML, CSS, JavaScript
+- React
 - Tailwind CSS
 
 ### **Backend**:
