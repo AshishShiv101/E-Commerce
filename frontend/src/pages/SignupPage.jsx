@@ -132,6 +132,7 @@ const SignUpPage = () => {
               </div>
             </div>
 
+            {/* Fixed Role Dropdown */}
             <div>
               <label htmlFor="role" className="block text-sm font-medium text-gray-300">
                 Role
@@ -143,12 +144,9 @@ const SignUpPage = () => {
                 className="block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
                 required
               >
-                <select>
-                  <option value="" disabled hidden>Select a Role</option>
-                  <option value="customer">Customer</option>
-                  <option value="seller">Seller</option>
-                </select>
-
+                <option value="" disabled hidden>Select a Role</option>
+                <option value="customer">Customer</option>
+                <option value="seller">Seller</option>
               </select>
             </div>
 
