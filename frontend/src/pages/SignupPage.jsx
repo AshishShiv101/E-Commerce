@@ -146,7 +146,7 @@ const SignUpPage = () => {
               >
                 <option value="" disabled hidden>Select a Role</option>
                 <option value="customer">Customer</option>
-                <option value="seller">Seller</option>
+                <option value="admin">Seller</option>
               </select>
             </div>
 
